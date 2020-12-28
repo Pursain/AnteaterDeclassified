@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from 'react';
 import styled from 'styled-components';
-import { useWindowSize } from '@react-hook/window-size';  // consider using throttled version
+import { useWindowSize } from '@react-hook/window-size';  // TODO: consider using throttled version instead for extra responsiveness
 
 const GridRow = styled.div`
     display: flex;
@@ -13,14 +13,17 @@ const GridRow = styled.div`
 const GridCol = styled.div`
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-between;
-    flex: 1 1 450px; /*grow | shrink | basis */
+    justify-content: center;
+    flex: 1 1 420px; /*grow | shrink | basis */
     background-color: lightgray;
     height: 100%;
 `;
 
+// TODO: these are hand selected values, should reevaluate when proj progresses more
+// X dimension range: 1-4
+// Y dimension range: 1-2
 const calculateGridDimension = (width, height) => {
-    return { x: Math.floor(width / 450), y: Math.floor(height / 450) };
+    return { x: Math.min(Math.floor(width / 450),4), y: Math.min(Math.floor(height / 300), 2) };
 }
 
 // ({x:3, y:2},[1,2,3,4,5,6,7,8,9,0], 1) => [[3, 4], [5, 6], [7, 8]]
@@ -41,14 +44,14 @@ const createItemGrid = (gridDimension, items, paginationOffset = 0) => {
 }
 
 // handle logic for card sizes, pagination 
-export default function PaginatedGrid({ cards }) {
+export default function PaginatedGrid({ children }) {
     const [width, height] = useWindowSize();
     const [paginationOffset, setPaginationOffset] = useState(0);
     const gridDimension = calculateGridDimension(width, height);
-    const itemGrid = createItemGrid(gridDimension, cards, paginationOffset);
+    const itemGrid = createItemGrid(gridDimension, children, paginationOffset);
 
-    console.log(itemGrid)
-    console.log(width, height);
+    // console.log(itemGrid)
+    // console.log(width, height);
     return (
         <>
             <GridRow>
