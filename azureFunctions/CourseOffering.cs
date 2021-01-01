@@ -26,7 +26,7 @@ namespace AnteaterDeclassified.WebSoc
         public string Sec { get; set; }
 
         [JsonProperty("units")]
-        public string units { get; set; }
+        public string Units { get; set; }
 
         [JsonProperty("instructor")]
         public string Instructor { get; set; }
