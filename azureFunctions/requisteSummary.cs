@@ -27,14 +27,13 @@ namespace AnteaterDeclassified.WebSoc
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string course = req.Query["course"].ToString() ?? "";
+            // TODO: return no input error
             log.LogInformation($"Class Size Summary Query on course: {course}");
-
 
             Uri collectionUri = UriFactory.CreateDocumentCollectionUri("AnteaterDeclassified", "CourseCatalog");
             IQueryable<CourseCatalog> postReqQuery = client.CreateDocumentQuery<CourseCatalog>(collectionUri, new SqlQuerySpec
             {
-                // TODO: what a yikes of a query... should probably redesign/make-new tables to support this better
-                QueryText = "SELECT c.course FROM c where ARRAY_CONTAINS(c.prereqList, @course) or ARRAY_CONTAINS(c.prereqCoreqList, @course) or ARRAY_CONTAINS(c.coreqList, @course)",
+                QueryText = "SELECT c.course FROM c where ARRAY_CONTAINS(c.prereqList, @course)",
                 Parameters = new SqlParameterCollection()
                     {
                         new SqlParameter("@course", course)
@@ -44,34 +43,42 @@ namespace AnteaterDeclassified.WebSoc
             var postReqResults = postReqQuery
                 .AsEnumerable()
                 .Select(x => x.Course);
-            
-            foreach (var postReqResult in postReqResults)
-            {
-                Console.WriteLine($"PostReqs: {postReqResult}");
-            }
 
             IQueryable<CourseCatalog> preReqQuery = client.CreateDocumentQuery<CourseCatalog>(collectionUri, new SqlQuerySpec
             {
-                QueryText = "select c.prereqList, c.prereqCoreqList, c.CoreqList from c where c.course = @course",
+                QueryText = "select c.prereqList, c.coreqList from c where c.course = @course",
                 Parameters = new SqlParameterCollection()
                     {
                         new SqlParameter("@course", course)
                     }
             });
 
-            var preReqQueryFirst = preReqQuery.ToList().FirstOrDefault();
+            var preReqCoReqQueryFirst = preReqQuery
+                .AsEnumerable()
+                .SingleOrDefault();
 
-            var preReqResults = (preReqQueryFirst.PrereqList ?? Enumerable.Empty<string>())
-                .Concat((preReqQueryFirst.PrereqCoreqList ?? Enumerable.Empty<string>()))
-                .Concat((preReqQueryFirst.CoreqList ?? Enumerable.Empty<string>()));
-                
+            var preReqResults = preReqCoReqQueryFirst?.PrereqList ?? Enumerable.Empty<string>();
+            var coReqResults = preReqCoReqQueryFirst?.CoreqList ?? Enumerable.Empty<string>();
+
+
+            foreach (var postReqResult in postReqResults)
+            {
+                Console.WriteLine($"PostReqs: {postReqResult}");
+            }
+
             foreach (var preReqResult in preReqResults)
             {
-                Console.WriteLine($"PostReqs: {preReqResult}");
+                Console.WriteLine($"PreReqs: {preReqResult}");
+            }
+
+            foreach (var coReqResult in coReqResults)
+            {
+                Console.WriteLine($"CoReqs: {coReqResult}");
             }
 
             var result = new {
                 preReqs = preReqResults,
+                coReqs = coReqResults,
                 postReqs = postReqResults
             };
 

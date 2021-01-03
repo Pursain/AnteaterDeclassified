@@ -22,25 +22,19 @@ namespace AnteaterDeclassified.WebSoc
         [JsonProperty("prereqList")]
         public string[] PrereqList { get; set; }
 
-        [JsonProperty("prereqCoreqStr")]
-        public string PrereqCoreqStr { get; set; }
-
-        [JsonProperty("prereqCoreqList")]
-        public string[] PrereqCoreqList { get; set; }
-
-        [JsonProperty("CoreqStr")]
+        [JsonProperty("coreqStr")]
         public string CoreqStr { get; set; }
 
-        [JsonProperty("CoreqList")]
+        [JsonProperty("coreqList")]
         public string[] CoreqList { get; set; }
 
         [JsonProperty("repeatStr")]
         public string RepeatStr { get; set; }
 
-        [JsonProperty("ConcurrentWithStr")]
+        [JsonProperty("concurrentWithStr")]
         public string ConcurrentWithStr { get; set; }
 
-        [JsonProperty("ConcurrentWiths")]
+        [JsonProperty("concurrentWiths")]
         public string ConcurrentWiths { get; set; }
 
         [JsonProperty("restrictStr")]
