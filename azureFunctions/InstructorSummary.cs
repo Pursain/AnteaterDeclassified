@@ -33,7 +33,7 @@ namespace AnteaterDeclassified.WebSoc
             IQueryable<CourseOffering> query = client.CreateDocumentQuery<CourseOffering>(collectionUri, new SqlQuerySpec
             {
                 // TODO: verify c.type=Lec is correct behavior, may not be for some non-lec courses e.g. CS190
-                QueryText = "SELECT c.instructor, c.year, c.term FROM c where c.course = @course and c.type = 'Lec'",
+                QueryText = "SELECT c.instructor, c.term FROM c where c.course = @course and c.type = 'Lec'",
                 Parameters = new SqlParameterCollection()
                     {
                         new SqlParameter("@course", course)
@@ -44,17 +44,22 @@ namespace AnteaterDeclassified.WebSoc
                 .AsEnumerable() // end deferred execution here to use group by
                 .GroupBy(
                     x => x.Instructor,
-                    x => $"{x.Year} {x.Term}",
-                    (key, yearTerms) => new
+                    x => x.Term,
+                    (key, terms) => new
                     {
                         instructor = key,
-                        count = yearTerms.Count(),
-                        yearTerms = yearTerms.OrderByDescending(_ => _).ToList()
+                        spring = terms.Count( x => x == "Spring"),
+                        summerSession1 = terms.Count( x => x == "Summer Session 1"),
+                        summerSession2 = terms.Count( x => x == "Summer Session 2"),
+                        fall = terms.Count( x => x == "Fall"),
+                        winter = terms.Count( x => x == "Winter"),
+                        summerQuarterCom = terms.Count( x => x == "Summer Quarter (Com)"),
+                        summer10wk = terms.Count( x => x == "Summer 10wk"),
                     });
 
             foreach (var result in results)
             {
-                Console.WriteLine(result.instructor + " : " + result.count + " : " + result.yearTerms);
+                Console.WriteLine(result.instructor + "\t: " + result.spring + " : " + result.summerSession1 + " : " + result.summerSession2 + " : " + result.fall + " : " + result.winter + " : " + result.summerQuarterCom + " : " + result.summer10wk);
             }
 
             return new OkObjectResult(JsonConvert.SerializeObject(results));
