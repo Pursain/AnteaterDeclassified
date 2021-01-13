@@ -15,7 +15,7 @@ function App() {
 
 
 
-  const TEMP_CLASS = "I&C SCI 32A";
+  const TEMP_CLASS = "COMPSCI 161";
 
   let cards = [];
   cards.push(<TermCard course={TEMP_CLASS} />)

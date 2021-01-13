@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { ResponsiveWaffle } from '@nivo/waffle'
+import { ResponsiveRadar } from '@nivo/radar'
 import axios from 'axios';
 import Card from '../../layouts/card/Card'
 import { AutoSizer } from 'react-virtualized'   // TODO: use autosizer only package
@@ -16,7 +16,8 @@ const HoverBox = styled.div`
 const InstructorCard = ({ course }) => {
 
     const [data, setData] = useState(null);
-    let totalBlocks = 0;
+    const [maxValue, setMaxValue] = useState(0);
+    const [term, setTerm] = useState("fall");
 
     useEffect(async () => {
         const result = await axios(
@@ -24,17 +25,23 @@ const InstructorCard = ({ course }) => {
         );
         console.log(result);
 
-        totalBlocks = result.data.reduce(((acc, cur) => acc + cur.count), 0)
-        console.log(totalBlocks)
+        const formattedData = result.data.map( data => ({
+            instructor : data.instructor,
+            fall: data.fall + 1,
+            winter: data.winter + 1,
+            spring: data.spring + 1,
+            summerSession1: data.summerSession1 + 1,
+            summerSession2: data.summerSession2 + 1,
+            summerQuarterCom: data.summerQuarterCom + 1,
+            summer10wk: data.summer10wk + 1,
+        }))
 
-        var formatedData = result.data.map(element => ({
-            "id": element.instructor,
-            "label": element.instructor,
-            "value": element.count ,
-            "tooltipData": element.yearyearTerms
-        }));
+        setMaxValue(result.data.reduce((acc, curr) => Math.max(curr.fall, curr.winter, curr.spring, 
+                                                                curr.summerSession1, curr.summerSession2, 
+                                                                curr.summerQuarterCom, curr.summer10wk, acc), 0) + 1);
+        console.log(maxValue)
 
-        setData(formatedData);
+        setData(formattedData);
     }, []);
 
     return (
@@ -43,55 +50,68 @@ const InstructorCard = ({ course }) => {
             <AutoSizer>
                 {({ height, width }) => (
                     data
-                        ? <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: height - 50, width: width }}>
-                            <ResponsiveWaffle
+                        ? <div style={{ display: "flex", flexFlow: "column", alignItems: "center", justifyContent: "center", height: height - 100, width: width}}>
+                            <ResponsiveRadar
                                 data={data}
-                                total={36}
-                                rows={6}
-                                columns={6}
-                                margin={{ top: 10, right: 10, bottom: 10, left: 120 }}
-                                colors={{ scheme: 'nivo' }}
-                                borderColor={{ from: 'color', modifiers: [['darker', 0.3]] }}
+                                keys={[`${term}`]}
+                                indexBy="instructor"
+                                maxValue={`${maxValue}`}
+                                margin={{ top: 50, right: 80, bottom: 40, left: 80 }}
+                                // curve="linearClosed"
+                                borderWidth={2}
+                                borderColor={{ from: 'color' }}
+                                gridLevels={5}
+                                gridShape="circular"
+                                gridLabelOffset={36}
+                                // enableDots={true}
+                                // dotSize={10}
+                                dotColor={{ theme: 'background' }}
+                                // dotBorderWidth={2}
+                                dotBorderColor={{ from: 'color' }}
+                                // enableDotLabel={true}
+                                dotLabel="value"
+                                dotLabelYOffset={-12}
+                                colors={{ scheme: 'set1' }}
+                                fillOpacity={0.25}
+                                blendMode="multiply"
                                 animate={true}
-                                motionStiffness={90}
-                                motionDamping={11}
-                                // tooltip={function (e) {
-                                //     var t = e.datum;
-                                //     console.log(t);
-                                //     return (
-                                //         <HoverBox >
-                                //             {/* <p>{t.id}</p> */}
-                                //             <p>{t.data.tooltipData.toString()}</p>
-                                //         </HoverBox>
-                                //     );
-                                // }}
-                                legends={[
-                                    {
-                                        anchor: 'top-left',
-                                        direction: 'column',
-                                        justify: false,
-                                        translateX: -100,
-                                        translateY: 0,
-                                        itemsSpacing: 4,
-                                        itemWidth: 100,
-                                        itemHeight: 20,
-                                        itemDirection: 'left-to-right',
-                                        itemOpacity: 1,
-                                        itemTextColor: '#777',
-                                        symbolSize: 20,
-                                        effects: [
-                                            {
-                                                on: 'hover',
-                                                style: {
-                                                    itemTextColor: '#000',
-                                                    itemBackground: '#f7fafb'
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ]}
+                                motionConfig="wobbly"
+                                isInteractive={true}
+                                tooltipFormat={value => value - 1}
+                                // legends={[
+                                //     {
+                                //         anchor: 'top-left',
+                                //         direction: 'column',
+                                //         translateX: -50,
+                                //         translateY: -40,
+                                //         itemWidth: 80,
+                                //         itemHeight: 20,
+                                //         itemTextColor: '#999',
+                                //         symbolSize: 12,
+                                //         symbolShape: 'circle',
+                                //         effects: [
+                                //             {
+                                //                 on: 'hover',
+                                //                 style: {
+                                //                     itemTextColor: '#000'
+                                //                 }
+                                //             }
+                                //         ]
+                                //     }
+                                // ]}
                             />
+                            <div style={{display: "flex", flexFlow: "row wrap"}}>
+                            <button onClick={() => setTerm("fall")}>Fall</button>
+                            <button onClick={() => setTerm("winter")}>Winter</button>
+                            <button onClick={() => setTerm("spring")}>Spring</button>
+                            <button onClick={() => setTerm("summerSession1")}>Summer Session 1</button>
+                            <button onClick={() => setTerm("summerSession2")}>Summer Session 2</button>
+                            <button onClick={() => setTerm("summerQuarterCom")}>Summer Quarter (Com)</button>
+                            <button onClick={() => setTerm("summer10wk")}>Summer 10wk</button>
+                            </div>
+                            <p>{term}</p>
                         </div>
+
                         : "Loading"
                 )}
             </AutoSizer>
