@@ -19,7 +19,7 @@ const TermCard = ({ course }) => {
 
     useEffect(async () => {
         const result = await axios(
-            `http://localhost:7071/api/HttpTriggerCSharp1?course=${encodeURIComponent(course)}`,
+            `${process.env.REACT_APP_BACKEND_DOMAIN}/api/TermSummary?course=${encodeURIComponent(course)}`,
         );
         console.log(result);
 
