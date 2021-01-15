@@ -30,10 +30,6 @@ steps:
   workingDirectory: '$(directory)'
   displayName: 'npm run build'
 
-- script: npm install
-  workingDirectory: '$(directory)'
-  displayName: 'npm install'
-
 - task: CopyFiles@2
   displayName: 'Copy files'
   inputs:
@@ -61,5 +57,5 @@ steps:
   inputs:
     azureSubscription: '$(serviceConnection)'
     appName: '$(appServiceName)'
-    appType: 'webApp'
+    appType: 'webAppLinux'
     package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
