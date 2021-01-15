@@ -13,7 +13,7 @@ pool:
 variables:
   directory: AnteaterDeclassifed/frontend
   stage: development
-  serviceConnection: REACT_AZURE_ANTEATER_DECLASSIFIED
+  serviceConnection: Pursain
   appServiceName: anteaterDeclassified123
 
 steps:
