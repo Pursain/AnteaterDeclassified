@@ -11,7 +11,7 @@ pool:
 
 # Set variables
 variables:
-  directory: AnteaterDeclassifed/frontend
+  directory: frontend
   stage: development
   serviceConnection: REACT_AZURE_ANTEATER_DECLASSIFIED
   appServiceName: anteaterDeclassified123
