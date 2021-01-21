@@ -5,8 +5,7 @@ import Card from './components/layouts/card/Card';
 import TermCard from './components/cards/termCard/TermCard';
 import ClassSizeCard from './components/cards/classSizeCard/ClassSizeCard';
 import InstructorCard from './components/cards/instructorCard/InstructorCard';
-
-
+import CourseCard from './components/cards/courseCard/CourseCard';
 
 
 
@@ -18,6 +17,7 @@ function App() {
   const TEMP_CLASS = "COMPSCI 161";
 
   let cards = [];
+  cards.push(<CourseCard course={TEMP_CLASS} />)
   cards.push(<TermCard course={TEMP_CLASS} />)
   cards.push(<ClassSizeCard course={TEMP_CLASS} />)
   cards.push(<InstructorCard course={TEMP_CLASS} />)

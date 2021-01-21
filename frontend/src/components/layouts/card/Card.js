@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const CardStyled = styled.div`
+const Card = styled.div`
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
@@ -13,10 +13,12 @@ const CardStyled = styled.div`
     overflow-y: hidden;
 `;
 
-export default function Card({children}) {
-    return (
-        <CardStyled>
-            {children}
-        </CardStyled>
-    )
-}
+export default Card;
+
+// export default function Card({children}) {
+//     return (
+//         <CardStyled>
+//             {children}
+//         </CardStyled>
+//     )
+// }
