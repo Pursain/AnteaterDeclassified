@@ -45,6 +45,9 @@ export default function CourseCard({ course }) {
     const [data, setData] = useState(null);
 
     useEffect(async () => {
+        console.log("confused", process.env.REACT_APP_BACKEND_DOMAIN);
+        console.log("confused2", `${process.env.REACT_APP_BACKEND_DOMAIN}/api/CourseSummary?course=${encodeURIComponent(course)}`);
+
         const result = await axios(
             `${process.env.REACT_APP_BACKEND_DOMAIN}/api/CourseSummary?course=${encodeURIComponent(course)}`,
         );
