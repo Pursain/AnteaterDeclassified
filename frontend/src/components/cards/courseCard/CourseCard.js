@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 import Card from '../../layouts/card/Card'
 import styled from 'styled-components';
-import ReactTooltip from "react-tooltip";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const CustomColorCard = styled(Card)`
