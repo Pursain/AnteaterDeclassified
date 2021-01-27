@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-export const Homepage = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+import { Grommet, Main } from 'grommet';
+
+export const HomepageLayout = ({ children }) => (
+    <Grommet
+        full="true"
+    >
+        <Main
+            justify="center"
+            align="center"
+        >
+            {children}
+        </Main>
+    </Grommet>
+);
