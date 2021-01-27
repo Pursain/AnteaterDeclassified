@@ -4,20 +4,11 @@ import { Box, Grid, Text, Keyboard } from 'grommet'
 import { HomepageLayout } from '../layouts/pages/HomepageLayout'
 import { LearnMore } from '../learnMore/LearnMore'
 import { SearchField } from '../search/SearchField'
-
-
+import { useSearch } from '../../hooks/Search/Search'
 
 export const Homepage = () => {
     const [searchString, setSearchString] = useState("")
-    const [searchResults, setSearchResults] = useState()
-
-
-    useEffect(() => {
-        if (searchString) {
-            console.log("TODO: fuse.js")
-        }
-    }, [searchString])
-
+    const [searchResults] = useSearch(searchString);
 
     return (
         <HomepageLayout>
@@ -57,7 +48,14 @@ export const Homepage = () => {
                             gridArea="Content"
                             round={{ "size": "xsmall", "corner": "bottom" }}
                         >
-                            {searchString}
+                            {searchResults && searchResults.map(result =>
+                                <Box
+                                    height="xsmall"
+                                    background="accent-2"
+                                >
+                                    <Text>{result.item.course} : {result.item.title}</Text>
+                                </Box>
+                            )}
                         </Box>
                         :
                         <Box

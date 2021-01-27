@@ -1,0 +1,404 @@
+{
+    "AC ENG": [
+        "ACENG",
+        "AE",
+        "ENG"
+    ],
+    "AFAM": [
+    ],
+    "ANATOMY": [
+    ],
+    "ANTHRO": [
+        "ANTH"
+    ],
+    "ARABIC": [
+        "ARB"
+    ],
+    "ARMN": [
+    ],
+    "ART": [
+    ],
+    "ART HIS": [
+        "ARTHIS",
+        "AH",
+        "ART"
+    ],
+    "ARTS": [
+        "ART"
+    ],
+    "ASIANAM": [
+        "ASAM"
+    ],
+    "BANA": [
+    ],
+    "BATS": [
+    ],
+    "BIO SCI": [
+        "BIOSCI",
+        "BS",
+        "BIO"
+    ],
+    "BIOCHEM": [
+        "BC",
+        "BIO"
+    ],
+    "BME": [
+    ],
+    "BSEMD": [
+    ],
+    "CBE": [
+    ],
+    "CBEMS": [
+    ],
+    "CHC/LAT": [
+        "CHCLAT",
+        "CL",
+        "CHC",
+        "LAT",
+        "CHICANO"
+    ],
+    "CHEM": [
+    ],
+    "CHINESE": [
+        "CHIN",
+        "CH",
+        "CHI"
+    ],
+    "CLASSIC": [
+        "CLA",
+        "CLAS",
+        "CLASS"
+    ],
+    "CLT&THY": [
+        "CLTTHY",
+        "CT"
+    ],
+    "COGS": [
+    ],
+    "COM LIT": [
+        "COMLIT",
+        "CL",
+        "CLIT",
+        "COMPLIT"
+    ],
+    "COMPSCI": [
+        "CS"
+    ],
+    "CRITISM": [
+    ],
+    "CRM/LAW": [
+        "CRMLAW",
+        "CL",
+        "CRIM",
+        "CRM"
+    ],
+    "CSE": [
+    ],
+    "DANCE": [
+    ],
+    "DEV BIO": [
+        "DEVBIO",
+        "DB"
+    ],
+    "DRAMA": [
+    ],
+    "EARTHSS": [
+        "ESS"
+    ],
+    "EAS": [
+        "EASIAN"
+    ],
+    "ECO EVO": [
+        "ECOEVO",
+        "EE"
+    ],
+    "ECON": [
+    ],
+    "ECPS": [
+    ],
+    "EDUC": [
+        "ED",
+        "EDU"
+    ],
+    "EECS": [
+    ],
+    "ENGLISH": [
+        "ENG"
+    ],
+    "ENGR": [
+        "ENG"
+    ],
+    "ENGRCEE": [
+        "ENG",
+        "ENGR"
+    ],
+    "ENGRMAE": [
+        "ENG",
+        "ENGR"
+    ],
+    "EPIDEM": [
+    ],
+    "EURO ST": [
+        "EUROST",
+        "ET"
+    ],
+    "FIN": [
+    ],
+    "FLM&MDA": [
+        "FLMMDA",
+        "FM",
+        "FILM",
+        "FLM",
+        "FLMMD",
+        "FMS"
+    ],
+    "FRENCH": [
+        "FR",
+        "FREN",
+        "FRENC",
+        "FRNCH"
+    ],
+    "GEN&SEX": [
+        "GENSEX",
+        "GS",
+        "GSS"
+    ],
+    "GERMAN": [
+        "GERM"
+    ],
+    "GLBL ME": [
+        "GLBLME",
+        "GM"
+    ],
+    "GLBLCLT": [
+        "GC",
+        "GLC"
+    ],
+    "GREEK": [
+        "GRK"
+    ],
+    "HEBREW": [
+    ],
+    "HISTORY": [
+        "HIST",
+        "HIS"
+    ],
+    "HUMAN": [
+        "HUM",
+        "HUMCORE",
+        "HUMANCO"
+    ],
+    "I&C SCI": [
+        "ICS"
+    ],
+    "IN4MATX": [
+        "INF",
+        "IN4MTX"
+    ],
+    "INTL ST": [
+        "INTLST",
+        "IS",
+        "INTST",
+        "INT"
+    ],
+    "IRAN": [
+    ],
+    "ITALIAN": [
+        "ITA",
+        "ITAL"
+    ],
+    "JAPANSE": [
+        "JAP",
+        "JPN",
+        "JP",
+        "JAPAN",
+        "JAPANESE"
+    ],
+    "KOREAN": [
+        "KOR"
+    ],
+    "LATIN": [
+    ],
+    "LINGUIS": [
+        "LING",
+        "LSCI",
+        "LINGUISTICS"
+    ],
+    "LIT JRN": [
+        "LITJRN",
+        "LJ",
+        "LITJ"
+    ],
+    "LPS": [
+    ],
+    "LSCI": [
+    ],
+    "M&MG": [
+        "MMG",
+        "M"
+    ],
+    "MATH": [
+    ],
+    "MGMT": [
+        "MANAGEMENT"
+    ],
+    "MGMT EP": [
+        "MGMTEP"
+    ],
+    "MGMT FE": [
+        "MGMTFE"
+    ],
+    "MGMT HC": [
+        "MGMTHC"
+    ],
+    "MGMTMBA": [
+    ],
+    "MGMTPHD": [
+    ],
+    "MOL BIO": [
+        "MOLBIO",
+        "MB"
+    ],
+    "MPAC": [
+    ],
+    "MSE": [
+    ],
+    "MUSIC": [
+        "MUS",
+        "MUSICTHEORY"
+    ],
+    "NET SYS": [
+        "NETSYS"
+    ],
+    "NEURBIO": [
+    ],
+    "NUR SCI": [
+        "NURSCI",
+        "NS"
+    ],
+    "PATH": [
+    ],
+    "PED GEN": [
+        "PEDGEN",
+        "PG"
+    ],
+    "PERSIAN": [
+    ],
+    "PHARM": [
+    ],
+    "PHILOS": [
+        "PHIL",
+        "PHILO",
+        "PHILOSOPHY"
+    ],
+    "PHRMSCI": [
+        "PS",
+        "PHARMSCI",
+        "PHARM",
+        "PHRMS"
+    ],
+    "PHY SCI": [
+        "PHYSCI",
+        "PS",
+        "PHY",
+        "PHYS",
+        "PHYSC"
+    ],
+    "PHYSICS": [
+        "PHYS"
+    ],
+    "PHYSIO": [
+    ],
+    "POL SCI": [
+        "POLSCI",
+        "PS",
+        "POLISCI"
+    ],
+    "PORTUG": [
+        "PORTUGUESE"
+    ],
+    "PP&D": [
+        "PPD"
+    ],
+    "PSCI": [
+        "PS",
+        "PSB"
+    ],
+    "PSYCH": [
+        "PSYC"
+    ],
+    "PUB POL": [
+        "PP"
+    ],
+    "PUBHLTH": [
+        "PUBHLTH",
+        "PH",
+        "PUBHEALTH",
+        "PUBLICHEALTH"
+    ],
+    "REL STD": [
+        "RELSTD",
+        "PS",
+        "REL",
+        "RELST",
+        "RELSTUDIES"
+    ],
+    "ROTC": [
+    ],
+    "RUSSIAN": [
+        "RUS",
+        "RUSS"
+    ],
+    "SOC SCI": [
+        "SOC",
+        "SS"
+    ],
+    "SOCECOL": [
+        "SOC",
+        "SE",
+        "SOECOL"
+    ],
+    "SOCIOL": [
+        "SOC",
+        "SOCIO",
+        "SOCIOLOGY"
+    ],
+    "SPANISH": [
+        "SPAN",
+        "SP"
+    ],
+    "SPPS": [
+        "SOC"
+    ],
+    "STATS": [
+        "STAT"
+    ],
+    "SWE": [
+    ],
+    "TOX": [
+    ],
+    "UCDC": [
+    ],
+    "UNI AFF": [
+    ],
+    "UNI STU": [
+        "UNISTU",
+        "UNI",
+        "UNIST",
+        "UNISTUDIES"
+    ],
+    "UPPP": [
+    ],
+    "VIETMSE": [
+        "VIET"
+    ],
+    "VIS STD": [
+        "VISSTD",
+        "VS"
+    ],
+    "WRITING": [
+        "WR",
+        "WRIT",
+        "WRITI"
+    ]
+}
