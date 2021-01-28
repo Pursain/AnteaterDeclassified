@@ -35,7 +35,7 @@ export const useSearch = (searchString) => {
         if (fuse && searchString) {
             setSearchResults(fuse.search(searchString).slice(0, 10))
         }
-    }, [searchString])
+    }, [searchString, fuse])
 
     return [
         searchResults

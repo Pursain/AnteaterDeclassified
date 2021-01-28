@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
-import { Box, Grid, Text, Keyboard } from 'grommet'
+import { Box, Grid, Text, Keyboard, Anchor } from 'grommet'
 import { HomepageLayout } from '../layouts/pages/HomepageLayout'
+import { Scrollbar } from "react-scrollbars-custom";
 import { LearnMore } from '../learnMore/LearnMore'
 import { SearchField } from '../search/SearchField'
 import { useSearch } from '../../hooks/Search/Search'
+import { useHistory } from 'react-router-dom'
 
 export const Homepage = () => {
     const [searchString, setSearchString] = useState("")
     const [searchResults] = useSearch(searchString);
+    const history = useHistory();
 
     return (
         <HomepageLayout>
@@ -29,7 +32,10 @@ export const Homepage = () => {
                     ]}
                     fill="vertical"
                 >
-                    <Keyboard onEnter={() => alert('TODO: hook this to click on first result')}>
+                    <Keyboard onEnter={() => {
+                        if (searchResults)
+                            history.push(`/${encodeURIComponent(searchResults[0].item.course)}`)
+                    }}>
                         <Box
                             gridArea="Search"
                             justify="center"
@@ -44,19 +50,39 @@ export const Homepage = () => {
                     </Keyboard>
 
                     {searchString ?
-                        <Box
-                            gridArea="Content"
-                            round={{ "size": "xsmall", "corner": "bottom" }}
-                        >
-                            {searchResults && searchResults.map(result =>
-                                <Box
-                                    height="xsmall"
-                                    background="accent-2"
-                                >
-                                    <Text>{result.item.course} : {result.item.title}</Text>
-                                </Box>
-                            )}
-                        </Box>
+                        <Scrollbar>
+                            <Box
+                                gridArea="Content"
+                                round={{ "size": "xsmall", "corner": "bottom" }}
+                                pad={{
+                                    "top": "medium",
+                                    "bottom": "medium",
+                                    "left": "small",
+                                    "right": "small"
+                                }}
+                                style={{ overflowY: "auto" }}
+                                animation="fadeIn"
+
+                            >
+                                {searchResults && searchResults.map((result, index) =>
+                                    <Anchor onClick={() => history.push(`/${encodeURIComponent(result.item.course)}`)}>
+                                        <Box
+                                            height="xxsmall"
+                                            background={index == 0 ? "neutral-3" : ""}
+                                            round="small"
+                                            align="start"
+                                            justify="center"
+                                            pad="small"
+                                            hoverIndicator={{
+                                                dark: { color: "neutral-3", opacity: "1" }
+                                            }}
+                                        >
+                                            <Text>{result.item.course} : {result.item.title}</Text>
+                                        </Box>
+                                    </Anchor>
+                                )}
+                            </Box>
+                        </Scrollbar>
                         :
                         <Box
                             gridArea="Content"
