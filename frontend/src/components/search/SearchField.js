@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import { TextInput } from 'grommet'
 
 export const SearchField = ({ searchString, setSearchString }) => {
-    
+
     // focus searchbox on render
     const searchBox = useRef(null);
     useEffect(() => {

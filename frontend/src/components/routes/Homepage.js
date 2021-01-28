@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
-
+import { useHistory } from 'react-router-dom'
 import { Box, Grid, Text, Keyboard, Anchor } from 'grommet'
 import { HomepageLayout } from '../layouts/pages/HomepageLayout'
 import { Scrollbar } from "react-scrollbars-custom";
 import { LearnMore } from '../learnMore/LearnMore'
 import { SearchField } from '../search/SearchField'
-import { useSearch } from '../../hooks/Search/Search'
-import { useHistory } from 'react-router-dom'
+import { useSearch } from '../../hooks/search/Search'
+import { useDebounce } from '../../hooks/debounce/Debounce'
+
 
 export const Homepage = () => {
     const [searchString, setSearchString] = useState("")
-    const [searchResults] = useSearch(searchString);
+    const debouncedSearchString = useDebounce(searchString, 300);
+    const [searchResults] = useSearch(debouncedSearchString);
     const history = useHistory();
 
     return (
@@ -49,7 +51,7 @@ export const Homepage = () => {
                         </Box>
                     </Keyboard>
 
-                    {searchString ?
+                    {debouncedSearchString ?
                         <Scrollbar>
                             <Box
                                 gridArea="Content"
@@ -62,7 +64,6 @@ export const Homepage = () => {
                                 }}
                                 style={{ overflowY: "auto" }}
                                 animation="fadeIn"
-
                             >
                                 {searchResults && searchResults.map((result, index) =>
                                     <Anchor onClick={() => history.push(`/${encodeURIComponent(result.item.course)}`)}>
@@ -87,6 +88,7 @@ export const Homepage = () => {
                         <Box
                             gridArea="Content"
                             round={{ "size": "xsmall", "corner": "bottom" }}
+                            animation="fadeIn"
                         >
                             <LearnMore />
                         </Box>
