@@ -1,19 +1,18 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { Box, Grid, Text, Keyboard, Anchor } from 'grommet'
+import { Box, Grid } from 'grommet'
 import { HomepageLayout } from '../layouts/pages/HomepageLayout'
-import { Scrollbar } from "react-scrollbars-custom";
 import { LearnMore } from '../learnMore/LearnMore'
 import { SearchField } from '../search/SearchField'
 import { useSearch } from '../../hooks/search/Search'
 import { useDebounce } from '../../hooks/debounce/Debounce'
+import { SearchResults } from '../search/SearchResults'
 
 
 export const Homepage = () => {
     const [searchString, setSearchString] = useState("")
+    const [highlightedIndex, setHighlightedIndex] = useState(0)
     const debouncedSearchString = useDebounce(searchString, 300);
     const [searchResults] = useSearch(debouncedSearchString);
-    const history = useHistory();
 
     return (
         <HomepageLayout>
@@ -34,64 +33,22 @@ export const Homepage = () => {
                     ]}
                     fill="vertical"
                 >
-                    <Keyboard onEnter={() => {
-                        if (searchResults)
-                            history.push(`/${encodeURIComponent(searchResults[0].item.course)}`)
-                    }}>
-                        <Box
-                            gridArea="Search"
-                            justify="center"
-                            pad="medium"
-                            direction="row"
-                            round={{ "size": "xsmall", "corner": "top" }}
-                            border={{ "size": "xsmall", "side": "bottom" }}
-                        >
-                            <Text size="large" margin={{ "right": "small" }}>🔍</Text>
-                            <SearchField searchString={searchString} setSearchString={setSearchString} />
-                        </Box>
-                    </Keyboard>
-
-                    {debouncedSearchString ?
-                        <Scrollbar>
-                            <Box
-                                gridArea="Content"
-                                round={{ "size": "xsmall", "corner": "bottom" }}
-                                pad={{
-                                    "top": "medium",
-                                    "bottom": "medium",
-                                    "left": "small",
-                                    "right": "small"
-                                }}
-                                style={{ overflowY: "auto" }}
-                                animation="fadeIn"
-                            >
-                                {searchResults && searchResults.map((result, index) =>
-                                    <Anchor onClick={() => history.push(`/${encodeURIComponent(result.item.course)}`)}>
-                                        <Box
-                                            height="xxsmall"
-                                            background={index == 0 ? "neutral-3" : ""}
-                                            round="small"
-                                            align="start"
-                                            justify="center"
-                                            pad="small"
-                                            hoverIndicator={{
-                                                dark: { color: "neutral-3", opacity: "1" }
-                                            }}
-                                        >
-                                            <Text>{result.item.course} : {result.item.title}</Text>
-                                        </Box>
-                                    </Anchor>
-                                )}
-                            </Box>
-                        </Scrollbar>
+                    <SearchField searchString={searchString}
+                        setSearchString={setSearchString}
+                        searchResults={searchResults}
+                        highlightedIndex={highlightedIndex}
+                        setHighlightedIndex={setHighlightedIndex}
+                    />
+                    {debouncedSearchString
+                        ?
+                        <SearchResults
+                            searchResults={searchResults}
+                            debouncedSearchString={debouncedSearchString}
+                            highlightedIndex={highlightedIndex}
+                            setHighlightedIndex={setHighlightedIndex}
+                        />
                         :
-                        <Box
-                            gridArea="Content"
-                            round={{ "size": "xsmall", "corner": "bottom" }}
-                            animation="fadeIn"
-                        >
-                            <LearnMore />
-                        </Box>
+                        <LearnMore />
                     }
                 </Grid>
             </Box>
