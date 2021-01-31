@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { TextInput } from 'grommet'
 import { useHistory } from 'react-router-dom'
-import { Box, Text, Keyboard} from 'grommet'
+import { Box, Text, Keyboard } from 'grommet'
 
 export const SearchField = ({ searchResults, searchString, setSearchString, highlightedIndex, setHighlightedIndex }) => {
     const history = useHistory();
