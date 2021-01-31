@@ -18,7 +18,7 @@ export const Coursepage = () => {
             </Box>
 
             <Box background="light-2" gridArea="RMP" animation={["zoomIn", "fadeIn"]} round="small">
-                {<RMP />}
+                <RMP />
             </Box>
         </CoursepageLayout>
     )

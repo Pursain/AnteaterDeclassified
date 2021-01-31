@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Grid, Box, } from 'grommet'
 import { RMPSidebar } from './RMPSidebar'
+import { RMPReviews } from './RMPReviews'
 
 export const RMP = () => {
     const [selectedInstructor, setSelectedInstructor] = useState(null)
@@ -18,15 +19,13 @@ export const RMP = () => {
             ]}
             fill="vertical"
         >
-            <Box background="light-5" gridArea="Header" round={{ size:"small", corner: "top" }}>
+            <Box background="light-5" gridArea="Header" round={{ size: "small", corner: "top" }}>
                 Header
             </Box>
 
-            <RMPSidebar gridArea="Sidebar" selectedInstructor={selectedInstructor} setSelectedInstructor={setSelectedInstructor}/>
+            <RMPSidebar gridArea="Sidebar" selectedInstructor={selectedInstructor} setSelectedInstructor={setSelectedInstructor} />
 
-            <Box background="light-3" gridArea="Content" round={{ size:"small", corner: "bottom-right" }}>
-                {selectedInstructor && selectedInstructor.instructor}
-            </Box>
+            <RMPReviews gridArea="Content" selectedInstructor={selectedInstructor} />
         </Grid>
     )
 }

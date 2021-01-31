@@ -4,7 +4,7 @@ import { Grommet, Main } from 'grommet';
 
 export const HomepageLayout = ({ children }) => (
     <Grommet
-        full="true"
+        full={true}
     >
         <Main
             justify="center"

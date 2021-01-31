@@ -65,7 +65,7 @@ const fixedGridAreas = {
 export const CoursepageLayout = ({ children }) => (
   <Grommet
     theme={customBreakpoints}
-    full="true"
+    full={true}
   >
     <ResponsiveGrid
       rows={rows}

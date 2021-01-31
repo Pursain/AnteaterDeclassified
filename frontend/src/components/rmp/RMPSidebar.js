@@ -26,7 +26,7 @@ export const RMPSidebar = ({ selectedInstructor, setSelectedInstructor }) => {
 
         setInstructorInfos(TEMP_PROF_INFOS)
         setSelectedInstructor(TEMP_PROF_INFOS[0])
-    }, [])
+    }, [setSelectedInstructor])
 
     return (
         <Box
@@ -43,6 +43,7 @@ export const RMPSidebar = ({ selectedInstructor, setSelectedInstructor }) => {
                             background={selectedInstructor.instructor === instructorInfo.instructor ? "neutral-3" : "light-3"}
                             margin="small"
                             round="small"
+                            key={index}
                         >
                             <Grid
                                 rows={['80px']}
