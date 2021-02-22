@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import { grommet } from 'grommet/themes';
-import { deepMerge } from 'grommet/utils';
+import { grommet } from "grommet/themes";
+import { deepMerge } from "grommet/utils";
 
-import { Grommet } from 'grommet';
-import { ResponsiveGrid } from '../Responsive/ResponsiveGrid'
+import { Grommet } from "grommet";
+import { ResponsiveGrid } from "../Responsive/ResponsiveGrid";
 
 const customBreakpoints = deepMerge(grommet, {
   global: {
@@ -26,47 +26,44 @@ const customBreakpoints = deepMerge(grommet, {
 });
 
 const columns = {
-  small: ['flex'],
-  medium: ['large'],
-  large: ['large', 'flex'],
-  xlarge: ['large', 'xxlarge'],
+  small: ["flex"],
+  medium: ["large"],
+  large: ["large", "flex"],
+  xlarge: ["large", "xxlarge"],
 };
 
 const rows = {
-  small: ['medium', 'large', 'large'],
-  medium: ['medium', 'large', 'large'],
-  large: ['medium', 'flex'],
-  xlarge: ['medium', 'flex']
+  small: ["medium", "large", "large"],
+  medium: ["medium", "large", "large"],
+  large: ["medium", "flex"],
+  xlarge: ["medium", "flex"],
 };
 
 const fixedGridAreas = {
   small: [
-    { name: 'Summary', start: [0, 0], end: [0, 0] },
-    { name: 'RMP', start: [0, 1], end: [0, 1] },
-    { name: 'Analytics', start: [0, 2], end: [0, 2] },
+    { name: "Summary", start: [0, 0], end: [0, 0] },
+    { name: "RMP", start: [0, 1], end: [0, 1] },
+    { name: "Analytics", start: [0, 2], end: [0, 2] },
   ],
   medium: [
-    { name: 'Summary', start: [0, 0], end: [0, 0] },
-    { name: 'RMP', start: [0, 1], end: [0, 1] },
-    { name: 'Analytics', start: [0, 2], end: [0, 2] },
+    { name: "Summary", start: [0, 0], end: [0, 0] },
+    { name: "RMP", start: [0, 1], end: [0, 1] },
+    { name: "Analytics", start: [0, 2], end: [0, 2] },
   ],
   large: [
-    { name: 'Summary', start: [0, 0], end: [0, 0] },
-    { name: 'RMP', start: [0, 1], end: [0, 1] },
-    { name: 'Analytics', start: [1, 0], end: [1, 1] },
+    { name: "Summary", start: [0, 0], end: [0, 0] },
+    { name: "RMP", start: [0, 1], end: [0, 1] },
+    { name: "Analytics", start: [1, 0], end: [1, 1] },
   ],
   xlarge: [
-    { name: 'Summary', start: [0, 0], end: [0, 0] },
-    { name: 'RMP', start: [0, 1], end: [0, 1] },
-    { name: 'Analytics', start: [1, 0], end: [1, 1] },
+    { name: "Summary", start: [0, 0], end: [0, 0] },
+    { name: "RMP", start: [0, 1], end: [0, 1] },
+    { name: "Analytics", start: [1, 0], end: [1, 1] },
   ],
 };
 
 export const CoursepageLayout = ({ children }) => (
-  <Grommet
-    theme={customBreakpoints}
-    full={true}
-  >
+  <Grommet theme={customBreakpoints} full={true}>
     <ResponsiveGrid
       rows={rows}
       columns={columns}
@@ -78,5 +75,5 @@ export const CoursepageLayout = ({ children }) => (
     >
       {children}
     </ResponsiveGrid>
-  </Grommet >
+  </Grommet>
 );
