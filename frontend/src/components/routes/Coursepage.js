@@ -3,6 +3,7 @@ import { Box } from 'grommet'
 import { CoursepageLayout } from '../layouts/pages/CoursepageLayout'
 import { useParams } from "react-router-dom";
 import { RMP } from "../rmp/RMP"
+import { AnalyticsContainer } from '../analytics/AnalyticsContainer'
 
 export const Coursepage = () => {
     let { course } = useParams();
@@ -14,7 +15,7 @@ export const Coursepage = () => {
             </Box>
 
             <Box background="light-2" gridArea="Analytics" animation={["zoomIn", "fadeIn"]} round="small">
-                Analytics
+                <AnalyticsContainer course={course} />
             </Box>
 
             <Box background="light-2" gridArea="RMP" animation={["zoomIn", "fadeIn"]} round="small">
