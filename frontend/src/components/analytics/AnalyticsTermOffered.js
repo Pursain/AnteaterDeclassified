@@ -16,21 +16,22 @@ const AnalyticsTermOffered = ({ course }) => {
 
     const [data, setData] = useState(null);
 
-    useEffect(async () => {
-        const result = await axios(
+    useEffect(() => {
+        axios(
             `${process.env.REACT_APP_BACKEND_DOMAIN}/api/TermSummary?course=${encodeURIComponent(course)}`,
-        );
-        console.log(result);
+        ).then(result => {
+            console.log(result);
 
-        var formatedData = result.data.map(element => ({
-            "id": element.term,
-            "label": element.term,
-            "value": element.count,
-            "tooltipData": element.years
-        }));
+            var formatedData = result.data.map(element => ({
+                "id": element.term,
+                "label": element.term,
+                "value": element.count,
+                "tooltipData": element.years
+            }));
 
-        setData(formatedData);
-    }, []);
+            setData(formatedData);
+        })
+    }, [course]);
 
     return (
         <div>
@@ -38,10 +39,10 @@ const AnalyticsTermOffered = ({ course }) => {
             <AutoSizer>
                 {({ height, width }) => (
                     data
-                        ? <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: height - 50, width: width }}>
+                        ? <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: height, width: width }}>
                             <ResponsivePie
                                 data={data}
-                                margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+                                margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                                 innerRadius={0.5}
                                 padAngle={0.7}
                                 cornerRadius={3}
