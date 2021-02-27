@@ -4,6 +4,7 @@ import { CoursepageLayout } from "../layouts/pages/CoursepageLayout";
 import { useParams } from "react-router-dom";
 import { RMP } from "../rmp/RMP";
 import { CourseSummary } from "../courseSummary/CourseSummary";
+import { AnalyticsContainer } from '../analytics/AnalyticsContainer'
 
 export const Coursepage = () => {
   let { course } = useParams();
@@ -25,7 +26,7 @@ export const Coursepage = () => {
         animation={["zoomIn", "fadeIn"]}
         round="small"
       >
-        Analytics
+                <AnalyticsContainer course={course} />
       </Box>
 
       <Box
