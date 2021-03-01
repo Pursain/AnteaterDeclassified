@@ -20,7 +20,7 @@ const AnalyticsTermOffered = ({ course }) => {
         axios(
             `${process.env.REACT_APP_BACKEND_DOMAIN}/api/TermSummary?course=${encodeURIComponent(course)}`,
         ).then(result => {
-            console.log(result);
+            // console.log(result);
 
             var formatedData = result.data.map(element => ({
                 "id": element.term,

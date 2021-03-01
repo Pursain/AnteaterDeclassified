@@ -8,7 +8,7 @@ export const AnalyticsSidebar = ({ selectedAnalytics, setSelectedAnalytics }) =>
         <Box
             style={{ overflowY: "auto" }}
             background="light-1"
-            round={{ size: "small", corner: "bottom-left" }}
+            round={{ size: "xsmall", corner: "bottom-left" }}
         >
             <Scrollbar>
                 <div style={{ display: "flex", flexFlow: "column" }}>

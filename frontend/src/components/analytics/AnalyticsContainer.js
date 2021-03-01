@@ -19,7 +19,7 @@ export const AnalyticsContainer = ({ course }) => {
             ]}
             fill="vertical"
         >
-            <Box background="light-5" gridArea="Header" round={{ size: "small", corner: "top" }}>
+            <Box background="light-5" gridArea="Header" round={{ size: "xsmall", corner: "top" }}>
                 Header
             </Box>
 

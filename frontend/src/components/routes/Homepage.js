@@ -3,7 +3,7 @@ import { Box, Grid } from 'grommet'
 import { HomepageLayout } from '../layouts/pages/HomepageLayout'
 import { LearnMore } from '../learnMore/LearnMore'
 import { SearchField } from '../search/SearchField'
-import { useSearch } from '../../hooks/Search/Search'
+import { useSearch } from '../../hooks/search/Search'
 import { useDebounce } from '../../hooks/debounce/Debounce'
 import { SearchResults } from '../search/SearchResults'
 

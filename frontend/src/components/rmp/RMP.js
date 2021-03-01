@@ -21,7 +21,7 @@ export const RMP = ({ course }) => {
       <Box
         background="light-5"
         gridArea="Header"
-        round={{ size: "small", corner: "top" }}
+        round={{ size: "xsmall", corner: "top" }}
       >
         Header
       </Box>

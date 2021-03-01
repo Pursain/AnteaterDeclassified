@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Grid, Box } from "grommet";
+import React from "react";
+import { Grid } from "grommet";
 import { CourseSummaryContent } from "./CourseSummaryContent";
+import { CourseSummaryHeader } from "./CourseSummaryHeader";
 
-export const CourseSummary = ({ course }) => {
+export const CourseSummaryContainer = ({ course }) => {
   return (
     // TODO responsive Grid
     <Grid
@@ -14,13 +15,7 @@ export const CourseSummary = ({ course }) => {
       ]}
       fill="vertical"
     >
-      <Box
-        background="light-5"
-        gridArea="Header"
-        round={{ size: "small", corner: "top" }}
-      >
-        Header
-      </Box>
+      <CourseSummaryHeader gridArea="Header" />
 
       <CourseSummaryContent gridArea="Content" course={course} />
     </Grid>

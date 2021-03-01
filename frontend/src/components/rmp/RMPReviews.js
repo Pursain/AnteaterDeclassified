@@ -31,7 +31,7 @@ export const RMPReviews = ({ course, selectedInstructor }) => {
   return (
     <Box
       background="light-3"
-      round={{ size: "small", corner: "bottom-right" }}
+      round={{ size: "xsmall", corner: "bottom-right" }}
       style={{ overflowY: "auto" }}
     >
       <Scrollbar ref={scrollRef}>
@@ -52,7 +52,7 @@ export const RMPReviews = ({ course, selectedInstructor }) => {
 
               <Box
                 gridArea="Review"
-                round="small"
+                round="xsmall"
                 margin="small"
                 background="light-4"
                 pad="small"

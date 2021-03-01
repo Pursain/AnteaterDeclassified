@@ -72,6 +72,9 @@ export const CoursepageLayout = ({ children }) => (
       pad="large"
       fill="vertical"
       justifyContent="center"
+      style={{
+        background: "#D0E9FF",
+      }}
     >
       {children}
     </ResponsiveGrid>

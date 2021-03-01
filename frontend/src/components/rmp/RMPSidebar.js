@@ -29,7 +29,7 @@ export const RMPSidebar = ({
     <Box
       style={{ overflowY: "auto" }}
       background="light-1"
-      round={{ size: "small", corner: "bottom-left" }}
+      round={{ size: "xsmall", corner: "bottom-left" }}
     >
       <Scrollbar>
         {instructorInfos
@@ -42,7 +42,7 @@ export const RMPSidebar = ({
                     : "light-3"
                 }
                 margin="small"
-                round="small"
+                round="xsmall"
                 key={index}
               >
                 <Grid
@@ -57,7 +57,7 @@ export const RMPSidebar = ({
                     gridArea="Icon"
                     justify="center"
                     align="center"
-                    round={{ size: "small", corner: "left" }}
+                    round={{ size: "xsmall", corner: "left" }}
                   >
                     <Avatar size="medium" src={index % 2 ? Cat : Dog} />
                   </Box>
@@ -66,7 +66,7 @@ export const RMPSidebar = ({
                     justify="center"
                     align="start"
                     pad="small"
-                    round={{ size: "small", corner: "right" }}
+                    round={{ size: "xsmall", corner: "right" }}
                   >
                     {`${instructorInfo.instructor}`}
                   </Box>
