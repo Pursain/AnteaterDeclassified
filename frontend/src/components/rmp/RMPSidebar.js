@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Scrollbar } from "react-scrollbars-custom";
 import { Grid, Box, Avatar } from "grommet";
 import { getProfilePic } from "../common/profilePics";
-import axios from "axios";
+import Spinner from "../common/Spinner";
+import useInstructorSummary from "./useInstructorSummary";
 
 const RMPSidebar = ({ course, selectedInstructor, setSelectedInstructor }) => {
-  const [instructorInfos, setInstructorInfos] = useState(null);
+  // TODO: the component should probably have the isLoading control
+  const [instructorInfos, isLoading, error] = useInstructorSummary(course);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_DOMAIN}/api/InstructorSummary`, {
-        params: {
-          course: course,
-        },
-      })
-      .then((result) => {
-        setSelectedInstructor(result.data[0]);
-        setInstructorInfos(result.data);
-      });
-  }, [course, setSelectedInstructor]);
+    if (error) console.error("123123", error);
+  }, [error]);
 
+  // set the first instructor as the highlighted one
+  useEffect(() => {
+    if (instructorInfos) setSelectedInstructor(instructorInfos[0]);
+  }, [instructorInfos, setSelectedInstructor]);
+
+  if (isLoading) return <Spinner />;
   return (
     <Box
       style={{ overflowY: "auto" }}
@@ -27,51 +26,50 @@ const RMPSidebar = ({ course, selectedInstructor, setSelectedInstructor }) => {
       round={{ size: "xsmall", corner: "bottom-left" }}
     >
       <Scrollbar>
-        {instructorInfos
-          ? instructorInfos.map((instructorInfo, index) => (
-              <Box
-                onClick={() => setSelectedInstructor(instructorInfo)}
-                background={
-                  selectedInstructor.instructor === instructorInfo.instructor
-                    ? "neutral-3"
-                    : "light-3"
-                }
-                margin="small"
-                round="xsmall"
-                key={index}
+        {instructorInfos &&
+          instructorInfos.map((instructorInfo, index) => (
+            <Box
+              onClick={() => setSelectedInstructor(instructorInfo)}
+              background={
+                selectedInstructor.instructor === instructorInfo.instructor
+                  ? "neutral-3"
+                  : "light-3"
+              }
+              margin="small"
+              round="xsmall"
+              key={index}
+            >
+              <Grid
+                rows={["80px"]}
+                columns={["80px", "flex"]}
+                areas={[
+                  { name: "Icon", start: [0, 0], end: [0, 0] },
+                  { name: "Desc", start: [1, 0], end: [1, 0] },
+                ]}
+                fill="vertical"
               >
-                <Grid
-                  rows={["80px"]}
-                  columns={["80px", "flex"]}
-                  areas={[
-                    { name: "Icon", start: [0, 0], end: [0, 0] },
-                    { name: "Desc", start: [1, 0], end: [1, 0] },
-                  ]}
-                  fill="vertical"
+                <Box
+                  gridArea="Icon"
+                  justify="center"
+                  align="center"
+                  round={{ size: "xsmall", corner: "left" }}
                 >
-                  <Box
-                    gridArea="Icon"
-                    justify="center"
-                    align="center"
-                    round={{ size: "xsmall", corner: "left" }}
-                  >
-                    <Avatar size="medium" src={getProfilePic(index)} />
-                  </Box>
-                  <Box
-                    gridArea="Desc"
-                    justify="center"
-                    align="start"
-                    pad="small"
-                    round={{ size: "xsmall", corner: "right" }}
-                  >
-                    <span style={{ textTransform: "capitalize" }}>
-                      {instructorInfo.instructor.toLowerCase()}
-                    </span>
-                  </Box>
-                </Grid>
-              </Box>
-            ))
-          : "loading"}
+                  <Avatar size="medium" src={getProfilePic(index)} />
+                </Box>
+                <Box
+                  gridArea="Desc"
+                  justify="center"
+                  align="start"
+                  pad="small"
+                  round={{ size: "xsmall", corner: "right" }}
+                >
+                  <span style={{ textTransform: "capitalize" }}>
+                    {instructorInfo.instructor.toLowerCase()}
+                  </span>
+                </Box>
+              </Grid>
+            </Box>
+          ))}
       </Scrollbar>
     </Box>
   );

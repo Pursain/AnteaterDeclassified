@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Box, Tip } from "grommet";
 import useCourseSummary from "./useCourseSummary";
-
+import Spinner from "../common/Spinner";
 import { HoverText, Pill } from "../common/components";
 
 export const CourseSummaryContent = ({ course }) => {
@@ -9,12 +9,10 @@ export const CourseSummaryContent = ({ course }) => {
 
   // TODO: can do better
   useEffect(() => {
-    console.error(error);
+    if (error) console.error(error);
   }, [error]);
 
-  // TODO: add spinner or something
-  if (isLoading) return <p>loading</p>;
-
+  if (isLoading) return <Spinner />;
   return (
     <Box
       background="#F5F5F5"
@@ -60,12 +58,18 @@ export const CourseSummaryContent = ({ course }) => {
       )}
       <div>
         {courseData?.breadthCodeStr && (
-          <Tip plain content={<HoverText>{courseData.breadthCodeStr}</HoverText>}>
+          <Tip
+            plain
+            content={<HoverText>{courseData.breadthCodeStr}</HoverText>}
+          >
             <Pill>Breadth Code</Pill>
           </Tip>
         )}
         {courseData?.concurrentWithStr && (
-          <Tip plain content={<HoverText>{courseData.concurrentWithStr}</HoverText>}>
+          <Tip
+            plain
+            content={<HoverText>{courseData.concurrentWithStr}</HoverText>}
+          >
             <Pill>Concurrent</Pill>
           </Tip>
         )}
@@ -75,17 +79,26 @@ export const CourseSummaryContent = ({ course }) => {
           </Tip>
         )}
         {courseData?.designUnitsStr && (
-          <Tip plain content={<HoverText>{courseData.designUnitsStr}</HoverText>}>
+          <Tip
+            plain
+            content={<HoverText>{courseData.designUnitsStr}</HoverText>}
+          >
             <Pill>Design Units</Pill>
           </Tip>
         )}
         {courseData?.gradeOptionStr && (
-          <Tip plain content={<HoverText>{courseData.gradeOptionStr}</HoverText>}>
+          <Tip
+            plain
+            content={<HoverText>{courseData.gradeOptionStr}</HoverText>}
+          >
             <Pill>Grade Option</Pill>
           </Tip>
         )}
         {courseData?.overlapsWithStr && (
-          <Tip plain content={<HoverText>{courseData.overlapsWithStr}</HoverText>}>
+          <Tip
+            plain
+            content={<HoverText>{courseData.overlapsWithStr}</HoverText>}
+          >
             <Pill>Overlaps</Pill>
           </Tip>
         )}

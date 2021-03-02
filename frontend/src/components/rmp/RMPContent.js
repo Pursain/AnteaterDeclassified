@@ -3,6 +3,7 @@ import { Grid, Box, Avatar, Text } from "grommet";
 import { Scrollbar } from "react-scrollbars-custom";
 import { getProfilePic } from "../common/profilePics";
 import useReviews from "./useReviews";
+import Spinner from "../common/Spinner";
 
 const RMPContent = ({ course, selectedInstructor }) => {
   const [reviews, isLoading, error] = useReviews(course, selectedInstructor);
@@ -16,13 +17,11 @@ const RMPContent = ({ course, selectedInstructor }) => {
   );
 
   useEffect(() => {
-    if (error) {
-      console.error(error);
-    }
+    if (error) console.error(error);
   }, [error]);
 
-  if (isLoading) return <p>Loading</p>;
-
+  if (isLoading) return <Spinner />;
+  if (error) return <p>errrr</p>;
   return (
     <Box
       background="#FFFFFF"
@@ -30,7 +29,7 @@ const RMPContent = ({ course, selectedInstructor }) => {
       style={{ overflowY: "auto" }}
     >
       <Scrollbar ref={scrollRef}>
-        {reviews &&
+        {reviews?.length !== 0 ? (
           reviews.map((review, index) => (
             <Grid
               rows={["flex"]}
@@ -69,7 +68,10 @@ const RMPContent = ({ course, selectedInstructor }) => {
                 </Text>
               </Box>
             </Grid>
-          ))}
+          ))
+        ) : (
+          <p>No reviews found for this course and instructor</p>
+        )}
       </Scrollbar>
     </Box>
   );

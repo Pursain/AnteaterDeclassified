@@ -8,6 +8,7 @@ const useReviews = (course, selectedInstructor) => {
 
   useEffect(() => {
     if (selectedInstructor) {
+      setIsLoading(true);
       axios
         .get(`${process.env.REACT_APP_BACKEND_DOMAIN}/api/RMPSummary`, {
           params: {
@@ -17,9 +18,13 @@ const useReviews = (course, selectedInstructor) => {
         })
         .then((result) => {
           setReviews(result.data.ratings.reverse());
+          setError(false);
           setIsLoading(false);
         })
-        .catch((err) => setError(err));
+        .catch((err) => {
+          setError(err);
+          setIsLoading(false);
+        });
     }
   }, [course, selectedInstructor, setReviews]);
 

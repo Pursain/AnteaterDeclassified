@@ -42,8 +42,7 @@ const AnalyticsInstructors = ({ course }) => {
           0
         ) + 1
       );
-      console.log(maxValue);
-
+      
       setData(formattedData);
     });
   }, [course, maxValue]);
