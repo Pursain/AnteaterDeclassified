@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import { Grid, Box, Avatar, Text } from "grommet";
 import { Scrollbar } from "react-scrollbars-custom";
-import Cat from "../../assests/cat.png";
+import { getProfilePic } from "../common/profilePics";
 import useReviews from "./useReviews";
 
 const RMPContent = ({ course, selectedInstructor }) => {
@@ -40,9 +40,10 @@ const RMPContent = ({ course, selectedInstructor }) => {
                 { name: "Review", start: [1, 0], end: [1, 0] },
               ]}
               key={index}
+              fill="vertical"
             >
-              <Box gridArea="Icon" margin="small" align="center" justify="end">
-                <Avatar size="medium" src={Cat} />
+              <Box gridArea="Icon" margin="small" align="end" justify="end">
+                <Avatar size="medium" src={getProfilePic()} />
               </Box>
 
               <Box
@@ -52,8 +53,20 @@ const RMPContent = ({ course, selectedInstructor }) => {
                 background="#EFEFEF"
                 pad="small"
               >
-                <Text textAlign="end">{review.rDate}</Text>
-                <Text textAlign="start">{review.rComments}</Text>
+                <Text textAlign="end" margin={{ bottom: "10px" }}>
+                  {review.rDate}
+                </Text>
+                <Text
+                  textAlign="start"
+                  margin={{ bottom: "10px" }}
+                >{`${review.rClass} | Quality: ${review.rOverall} | Difficulty: ${review.rEasy}`}</Text>
+                <Text textAlign="start" margin={{ bottom: "10px" }}>
+                  {review.rComments}
+                </Text>
+                <Text textAlign="start">
+                  {review.teacherRatingTags.length !== 0 && "Tags: "}
+                  {review.teacherRatingTags.map((tag) => `${tag} | `)}
+                </Text>
               </Box>
             </Grid>
           ))}

@@ -36,6 +36,7 @@ export const ResponsiveGrid = ({
           areas={!areasVal ? undefined : areasVal}
           rows={!rowsVal ? size : rowsVal}
           columns={!columnsVal ? size : columnsVal}
+          fill="vertical"
         >
           {children}
         </Grid>

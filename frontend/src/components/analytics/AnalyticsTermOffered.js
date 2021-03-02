@@ -56,7 +56,6 @@ const AnalyticsTermOffered = ({ course }) => {
                                 sliceLabelsTextColor="#333333"
                                 tooltip={function (e) {
                                     var t = e.datum;
-                                    console.log(t);
                                     return (
                                         <HoverBox >
                                             <p>{t.id}</p>

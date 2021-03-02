@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Scrollbar } from "react-scrollbars-custom";
 import { Grid, Box, Avatar } from "grommet";
-import Cat from "../../assests/cat.png";
-import Dog from "../../assests/dog.png";
+import { getProfilePic } from "../common/profilePics";
 import axios from "axios";
 
 const RMPSidebar = ({ course, selectedInstructor, setSelectedInstructor }) => {
@@ -48,6 +47,7 @@ const RMPSidebar = ({ course, selectedInstructor, setSelectedInstructor }) => {
                     { name: "Icon", start: [0, 0], end: [0, 0] },
                     { name: "Desc", start: [1, 0], end: [1, 0] },
                   ]}
+                  fill="vertical"
                 >
                   <Box
                     gridArea="Icon"
@@ -55,7 +55,7 @@ const RMPSidebar = ({ course, selectedInstructor, setSelectedInstructor }) => {
                     align="center"
                     round={{ size: "xsmall", corner: "left" }}
                   >
-                    <Avatar size="medium" src={index % 2 ? Cat : Dog} />
+                    <Avatar size="medium" src={getProfilePic(index)} />
                   </Box>
                   <Box
                     gridArea="Desc"
@@ -64,7 +64,9 @@ const RMPSidebar = ({ course, selectedInstructor, setSelectedInstructor }) => {
                     pad="small"
                     round={{ size: "xsmall", corner: "right" }}
                   >
-                    {`${instructorInfo.instructor}`}
+                    <span style={{ textTransform: "capitalize" }}>
+                      {instructorInfo.instructor.toLowerCase()}
+                    </span>
                   </Box>
                 </Grid>
               </Box>

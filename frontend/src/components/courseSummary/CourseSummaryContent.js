@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Box, Tip } from "grommet";
 import useCourseSummary from "./useCourseSummary";
 
-import { HoverText, Pill } from "../common/common";
+import { HoverText, Pill } from "../common/components";
 
 export const CourseSummaryContent = ({ course }) => {
   const [courseData, isLoading, error] = useCourseSummary(course);
@@ -11,8 +11,6 @@ export const CourseSummaryContent = ({ course }) => {
   useEffect(() => {
     console.error(error);
   }, [error]);
-
-  console.log(courseData);
 
   // TODO: add spinner or something
   if (isLoading) return <p>loading</p>;

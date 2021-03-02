@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Grid, Box } from 'grommet'
 import { AnalyticsSidebar } from './AnalyticsSidebar'
 import { AnalyticsContent, ANALYTICS_OPTIONS } from './AnalyticsContent'
