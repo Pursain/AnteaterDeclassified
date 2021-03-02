@@ -5,11 +5,7 @@ import Cat from "../../assests/cat.png";
 import Dog from "../../assests/dog.png";
 import axios from "axios";
 
-export const RMPSidebar = ({
-  course,
-  selectedInstructor,
-  setSelectedInstructor,
-}) => {
+const RMPSidebar = ({ course, selectedInstructor, setSelectedInstructor }) => {
   const [instructorInfos, setInstructorInfos] = useState(null);
 
   useEffect(() => {
@@ -78,3 +74,5 @@ export const RMPSidebar = ({
     </Box>
   );
 };
+
+export default RMPSidebar;

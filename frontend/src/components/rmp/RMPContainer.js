@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Grid, Box } from "grommet";
-import { RMPSidebar } from "./RMPSidebar";
-import { RMPReviews } from "./RMPReviews";
+import { Grid } from "grommet";
+import RMPSidebar from "./RMPSidebar";
+import RMPContent from "./RMPContent";
+import RMPHeader from "./RMPHeader";
 
-export const RMP = ({ course }) => {
+const RMPContainer = ({ course }) => {
   const [selectedInstructor, setSelectedInstructor] = useState(null);
 
   return (
@@ -18,13 +19,7 @@ export const RMP = ({ course }) => {
       ]}
       fill="vertical"
     >
-      <Box
-        background="light-5"
-        gridArea="Header"
-        round={{ size: "xsmall", corner: "top" }}
-      >
-        Header
-      </Box>
+      <RMPHeader gridArea="Header" />
 
       <RMPSidebar
         gridArea="Sidebar"
@@ -33,7 +28,7 @@ export const RMP = ({ course }) => {
         setSelectedInstructor={setSelectedInstructor}
       />
 
-      <RMPReviews
+      <RMPContent
         gridArea="Content"
         course={course}
         selectedInstructor={selectedInstructor}
@@ -41,3 +36,5 @@ export const RMP = ({ course }) => {
     </Grid>
   );
 };
+
+export default RMPContainer;

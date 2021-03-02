@@ -1,36 +1,31 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useCallback } from "react";
 import { Grid, Box, Avatar, Text } from "grommet";
 import { Scrollbar } from "react-scrollbars-custom";
 import Cat from "../../assests/cat.png";
-import axios from "axios";
+import useReviews from "./useReviews";
 
-export const RMPReviews = ({ course, selectedInstructor }) => {
-  const scrollRef = useRef();
-  const [reviews, setReviews] = useState(null);
+const RMPContent = ({ course, selectedInstructor }) => {
+  const [reviews, isLoading, error] = useReviews(course, selectedInstructor);
+
+  // scroll to bottom on load
+  const scrollRef = useCallback(
+    (scrollbarNode) => {
+      if (scrollbarNode && reviews) scrollbarNode.scrollToBottom();
+    },
+    [reviews]
+  );
 
   useEffect(() => {
-    if (selectedInstructor) {
-      axios
-        .get(`${process.env.REACT_APP_BACKEND_DOMAIN}/api/RMPSummary`, {
-          params: {
-            course: course,
-            instructor: selectedInstructor.instructor,
-          },
-        })
-        .then((result) => {
-          setReviews(result.data.ratings.reverse());
-        });
+    if (error) {
+      console.error(error);
     }
-  }, [course, selectedInstructor, setReviews]);
+  }, [error]);
 
-  // scroll to bottom
-  useEffect(() => {
-    if (scrollRef) scrollRef.current.scrollToBottom();
-  }, [reviews, scrollRef]);
+  if (isLoading) return <p>Loading</p>;
 
   return (
     <Box
-      background="light-3"
+      background="#FFFFFF"
       round={{ size: "xsmall", corner: "bottom-right" }}
       style={{ overflowY: "auto" }}
     >
@@ -54,7 +49,7 @@ export const RMPReviews = ({ course, selectedInstructor }) => {
                 gridArea="Review"
                 round="xsmall"
                 margin="small"
-                background="light-4"
+                background="#EFEFEF"
                 pad="small"
               >
                 <Text textAlign="end">{review.rDate}</Text>
@@ -66,3 +61,5 @@ export const RMPReviews = ({ course, selectedInstructor }) => {
     </Box>
   );
 };
+
+export default RMPContent;

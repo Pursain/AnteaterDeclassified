@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "grommet";
 import { CoursepageLayout } from "../layouts/pages/CoursepageLayout";
 import { useParams } from "react-router-dom";
-import { RMP } from "../rmp/RMP";
+import RMPContainer from "../rmp/RMPContainer";
 import { CourseSummaryContainer } from "../courseSummary/CourseSummaryContainer";
 import { AnalyticsContainer } from "../analytics/AnalyticsContainer";
 
@@ -38,7 +38,7 @@ export const Coursepage = () => {
         round="xsmall"
         elevation="xlarge"
       >
-        <RMP course={course} />
+        <RMPContainer course={course} />
       </Box>
     </CoursepageLayout>
   );
