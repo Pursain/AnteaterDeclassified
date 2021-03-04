@@ -5,7 +5,7 @@ import { AnalyticsContent, ANALYTICS_OPTIONS } from './AnalyticsContent'
 
 
 export const AnalyticsContainer = ({ course }) => {
-    const [selectedAnalytics, setSelectedAnalytics] = useState(ANALYTICS_OPTIONS.TERMS_OFFERED)
+    const [selectedAnalytics, setSelectedAnalytics] = useState(ANALYTICS_OPTIONS.HISTORICAL_DATA)
 
     return (
         // TODO responsive Grid
