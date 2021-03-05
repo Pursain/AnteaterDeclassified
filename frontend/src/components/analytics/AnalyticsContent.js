@@ -1,6 +1,5 @@
 import React from "react";
-import AnalyticsTermOffered from "./AnalyticsTermOffered";
-import AnalyticsInstructors from "./AnalyticsInstructors";
+import HistoricalDataContainer from "./HistoricalDataContainer/HistoricalDataContainer";
 
 export const ANALYTICS_OPTIONS = Object.freeze({
   HISTORICAL_DATA: "Historical Data",
@@ -11,7 +10,7 @@ export const ANALYTICS_OPTIONS = Object.freeze({
 export const AnalyticsContent = ({ course, selectedAnalytics }) => {
   switch (selectedAnalytics) {
     case ANALYTICS_OPTIONS.HISTORICAL_DATA:
-      return "HISTORICAL_DATA";
+      return <HistoricalDataContainer course={course} />;
     case ANALYTICS_OPTIONS.INSTRUCTOR_SENTIMENT:
       return "INSTRUCTOR_SENTIMENT";
     case ANALYTICS_OPTIONS.COURSE_SENTIMENT:

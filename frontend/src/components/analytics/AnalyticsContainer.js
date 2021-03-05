@@ -11,7 +11,7 @@ export const AnalyticsContainer = ({ course }) => {
         // TODO responsive Grid
         <Grid
             rows={['xxsmall', 'flex']}
-            columns={['300px', 'flex']}
+            columns={['230px', 'flex']}
             areas={[
                 { name: 'Header', start: [0, 0], end: [1, 0] },
                 { name: 'Sidebar', start: [0, 1], end: [0, 1] },
